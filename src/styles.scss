@@ -1,4 +1,3 @@
-@import '~@angular/material/theming';
-@include mat-core();
-
 @import './assets/styles/theme.scss';
+@include mat-core();
+@include angular-material-theme($deck-theme);

@@ -16,6 +16,7 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.store.getNotes();
     this.isNavCollapsed = JSON.parse(localStorage.getItem('isNavCollapsed'));
   }
 

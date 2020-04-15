@@ -1,10 +1,9 @@
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument, DocumentReference } from '@angular/fire/firestore';
-import { Observable, combineLatest, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Note } from '../models/note';
 import { AuthService } from './auth.service';
-import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,10 +28,12 @@ export class StoreService {
     private breakpointObserver: BreakpointObserver,
     private auth: AuthService,
   ) {
-    this.getNotes();
   }
 
   getNotes(): void {
+    this.notes = [];
+    this.tags = [];
+
     this.notesCollection = this.fs.collection('notes', ref => {
       return ref.where('user_id', '==', this.auth.userData.uid || null)
                 .orderBy('updated_at', 'desc');
@@ -51,7 +52,6 @@ export class StoreService {
 
   getNote(id: string): AngularFirestoreDocument<any> {
     return this.notesCollection.doc(id);
-    // return this.notesCollection.doc(id).valueChanges();
   }
 
   addNote(data: Note): Promise<DocumentReference> {

@@ -18,6 +18,9 @@
 
 .wrapper {
   flex: 1;
+  overflow-y: auto;
+  flex-direction: column;
+  display: flex;
 }
 
 .editor {
@@ -26,15 +29,15 @@
 
 .markdown {
   padding: 20px;
-  height: 100%;
   word-break: break-word;
-  background-color: $editor-background-color;
+  background-color: #fff;
+  flex: 1;
 }
 
 .tags {
   background-color: $editor-background-color;
   border-top: 1px solid $border-color;
-  min-height: 50px;
+  height: 50px;
   align-items: center;
   display: flex;
   padding: 0 10px;
