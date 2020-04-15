@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "deck",
+      "public": "dist/deck",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

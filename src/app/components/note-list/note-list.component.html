@@ -1,0 +1,29 @@
+<mat-toolbar class="toolbar">
+  <app-search (search)="onSearch($event)"></app-search>
+</mat-toolbar>
+
+<div class="wrapper">
+  <div
+    *ngFor="let note of filteredNotes"
+    ngSortgridItem
+    [ngSortGridItems]="filteredNotes"
+  >
+    <div
+      class="list-item"
+      [class.selected]="note.id == selectedId"
+      (click)="onSelect(note)"
+    >
+      {{ note.title }}
+    </div>
+  </div>
+</div>
+
+<button
+  class="btn-compose-fab"
+  mat-fab
+  color="accent"
+  routerLink="/new"
+  [routerLinkActive]="'hidden'"
+>
+  <mat-icon>add</mat-icon>
+</button>

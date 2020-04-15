@@ -1,0 +1,141 @@
+/**
+ * THEME
+ * https://material.io/design/color/
+ */
+
+ $deck-palette: (
+  50 : #e7e9eb,
+  100 : #c2c8cc,
+  200 : #9aa4aa,
+  300 : #718088,
+  400 : #52646f,
+  500 : #344955,
+  600 : #2f424e,
+  700 : #273944,
+  800 : #21313b,
+  900 : #15212a,
+  A100 : #6dbeff,
+  A200 : #3aa7ff,
+  A400 : #0791ff,
+  A700 : #0083ec,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #ffffff,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #ffffff,
+      A700 : #ffffff,
+  )
+);
+
+$deck-primary: mat-palette($deck-palette);
+$deck-accent: mat-palette($mat-orange, A200, A100, A400);
+$deck-warn: mat-palette($mat-red);
+$deck-theme: mat-light-theme($deck-primary, $deck-accent, $deck-warn);
+@include angular-material-theme($deck-theme);
+
+
+/* VARIABLES */
+
+$wrapper-background-color: mat-color($deck-primary, 50);
+$sidebar-background-color: mat-color($deck-primary, 500);
+$sidebar-font-color: #d5e4e6;
+$editor-background-color: #fff;
+$grid-background-color: mat-color($deck-primary, 50);
+$toolbar-height: 48px;
+$button-background-color: #fff;
+$border-color: mat-color($deck-primary, 100);
+$card-background-color: #fff;
+$input-background-color: #fff;
+$datetime-font-color: gray;
+
+
+/* GLOBAL */
+
+* { box-sizing: border-box; }
+// html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+mat-icon {
+  user-select: none;
+}
+
+mat-progress-bar {
+  position: absolute;
+  z-index: 999;
+  top: 0;
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  height: $toolbar-height;
+}
+
+.btn {
+  background-color: $button-background-color;
+  height: 32px;
+  width: 38px;
+  border: 1px solid $border-color;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: -1px;
+  border-radius: 6px;
+
+  &:hover {
+    background-color: mat-color($deck-accent, 200);
+  }
+
+  &:active {
+    background-color: mat-color($deck-accent, 400);
+  }
+}
+
+.buttons {
+  display: inline-flex;
+
+  .btn {
+    border-radius: 0;
+  }
+
+  .btn:first-child {
+    border-radius: 6px 0 0 6px;
+  }
+
+  .btn:last-child {
+    border-radius: 0 6px 6px 0;
+  }
+}
+
+.mat-toolbar {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.btn-compose-fab {
+  display: none;
+}
+
+.dialog-container .mat-dialog-container {
+  padding: 12px;
+}
+
+@media (max-width: 959px) {
+  .btn-compose-fab {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+  }
+}

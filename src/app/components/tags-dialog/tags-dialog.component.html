@@ -1,0 +1,14 @@
+<input
+  #tag
+  class="tag-input"
+  placeholder="Enter tag"
+  autocomplete="off"
+  (keydown)="keyDown($event, tag.value)"
+>
+
+<div class="tag-list" *ngFor="let tag of store.tags">
+  <mat-checkbox
+    (change)="changeTag($event, tag)"
+    [checked]="isSelected(tag)"
+  >{{ tag }}</mat-checkbox>
+</div>

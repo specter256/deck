@@ -1,0 +1,80 @@
+@import 'src/styles.scss';
+
+.grid {
+  display: flex;
+  height: 100%;
+}
+
+.section-list {
+  min-width: 300px;
+  width: 300px;
+}
+
+.section-editor {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  flex: 1;
+}
+
+.editor {
+  height: 100%;
+}
+
+.markdown {
+  padding: 20px;
+  height: 100%;
+  word-break: break-word;
+  background-color: $editor-background-color;
+}
+
+.tags {
+  background-color: $editor-background-color;
+  border-top: 1px solid $border-color;
+  min-height: 50px;
+  align-items: center;
+  display: flex;
+  padding: 0 10px;
+}
+
+.statusbar {
+  display: none;
+}
+
+textarea {
+  width: 100%;
+  padding: 20px;
+  resize: none;
+  font-size: 16px;
+  background-color: $editor-background-color;
+  cursor: auto;
+  border: none;
+  height: 100%;
+  line-height: 1.5em;
+  outline: none;
+}
+
+textarea::-webkit-scrollbar {
+  width: 12px;
+  cursor: pointer;
+}
+
+textarea::-webkit-scrollbar-thumb {
+  background-color: mat-color($deck-primary, 300);
+}
+
+@media (max-width: 599px) {
+  .section-list {
+    width: 100%;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  .section-list {
+    width: 200px;
+    min-width: 200px;
+  }
+}

@@ -1,0 +1,25 @@
+@import 'src/styles.scss';
+
+.wrapper {
+  background-color: $editor-background-color;
+  border-right: 1px solid $border-color;
+  height: calc(100% - #{$toolbar-height});
+  overflow-y: auto;
+}
+
+.list-item {
+  padding: 12px 10px;
+  cursor: pointer;
+  height: 45px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: mat-color($deck-accent, 200);
+  }
+}
+
+.selected {
+  background-color: mat-color($deck-accent, 200);
+}

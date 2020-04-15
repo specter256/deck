@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "deck-notes": {
+      "hosting": {
+        "deck": [
+          "deck-notes"
+        ]
+      }
+    }
+  }
+}

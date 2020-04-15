@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="header">
+    <span [matTooltip]="data.title" [matTooltipShowDelay]="500">{{ data.title }}</span>
+  </div>
+
+  <div class="content">
+    <div>
+      <markdown ngPreserveWhitespaces [data]="data.content">
+      </markdown>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="datetime">{{ utils.getDate(data.updated_at) }}</span>
+    <div fxFlex></div>
+    <button mat-icon-button class="action-btn" (click)="delNote()">
+      <mat-icon color="primary">{{ isDelConfirm ? 'check' : 'delete' }}</mat-icon>
+    </button>
+  </div>
+</div>

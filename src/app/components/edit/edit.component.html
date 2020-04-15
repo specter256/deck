@@ -1,0 +1,45 @@
+<div class="grid">
+  <section class="section-list" *ngIf="isListVisible()">
+    <app-note-list
+      (selectNote)="onSelectNote($event)"
+      [selectedId]="id"
+    ></app-note-list>
+  </section>
+
+  <section class="section-editor" *ngIf="isEditorVisible()">
+    <app-toolbar
+      [id]="id"
+      [(title)]="title"
+      [isModal]="isModal"
+      (new)="new()"
+      (save)="save()"
+      (del)="del()"
+      (togglePreview)="togglePreview()"
+      (closeNew)="closeNew()"
+    ></app-toolbar>
+
+    <div class="wrapper">
+      <div class="editor" *ngIf="!isPreview">
+        <textarea
+          #editor
+          [(ngModel)]="content"
+          (keydown)="onKeyDown($event)"
+        ></textarea>
+      </div>
+
+      <div class="markdown" *ngIf="isPreview">
+        <markdown ngPreserveWhitespaces [data]="content">
+        </markdown>
+      </div>
+    </div>
+
+    <div class="tags">
+      <mat-chip-list>
+        <mat-chip *ngFor="let tag of tags" color="primary" selected>{{ tag }}</mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <div class="statusbar">
+    </div>
+  </section>
+</div>

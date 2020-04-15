@@ -1,0 +1,55 @@
+@import 'src/styles.scss';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  &__search {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 10px;
+    font-size: 16px;
+
+    mat-icon {
+      margin-right: 5px;
+      font-size: 100%;
+    }
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  // background-color: $grid-background-color;
+  background: linear-gradient(#e6646526, #9198e51f);
+  flex: 1;
+  justify-content: center;
+}
+
+.ng-sg-placeholder {
+  opacity: .3;
+}
+
+.drag-card {
+  /* https://github.com/react-dnd/react-dnd/issues/788 */
+  transform: translate(0, 0);
+}
+
+@media (max-width: 959px) {
+  .wrapper {
+    padding: 0;
+  }
+
+  .drag-card {
+    display: flex;
+    flex-basis: 50%;
+  }
+}

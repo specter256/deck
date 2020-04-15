@@ -1,0 +1,13 @@
+<button
+  *ngIf="store.isPhoneScreen || store.isTabletScreen"
+  mat-icon-button
+  (click)="store.toggleNav()"
+>
+  <mat-icon>menu</mat-icon>
+</button>
+
+<div class="search">
+  <mat-icon class="icn-search">search</mat-icon>
+  <input #search (keyup)="onSearch(search.value)" placeholder="Search">
+  <mat-icon class="icn-clear" (click)="search.value = ''; this.onSearch('')">clear</mat-icon>
+</div>

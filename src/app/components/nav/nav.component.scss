@@ -1,0 +1,97 @@
+@import 'src/styles.scss';
+
+mat-divider {
+  border-top-color: mat-color($deck-primary, 400) !important;
+  margin: 10px 0;
+}
+
+.is-active {
+  color: mat-color($deck-accent, 300) !important;
+}
+
+.wrapper {
+  height: 100vh;
+  background-color: $wrapper-background-color;
+  display: flex;
+}
+
+.sidenav-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 49px;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.sidenav-content {
+  width: 100%;
+}
+
+.sidebar {
+  width: 240px;
+  background-color: $sidebar-background-color;
+  color: $sidebar-font-color;
+  font-weight: 500;
+  overflow: hidden;
+  white-space: nowrap;
+  // box-shadow: 0 16px 38px -12px rgba(0,0,0,.56),
+  //             0 4px 25px 0 rgba(0,0,0,.12),
+  //             0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+.collapsed-side {
+  width: 60px;
+}
+
+.nav-expander {
+  height: 40px;
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+
+  &:hover {
+    cursor: pointer;
+    color: mat-color($deck-accent, 200);
+  }
+}
+
+.mat-list-base .mat-list-item {
+  color: $sidebar-font-color;
+
+  mat-icon {
+    margin-right: 20px;
+  }
+}
+
+.tag-name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-compose {
+  background-color: mat-color($deck-accent, A200);
+  padding: 10px 16px;
+  justify-items: center;
+  display: flex;
+  color: black;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+  width: 160px;
+  margin-bottom: 10px;
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+
+  mat-icon {
+    margin-right: 20px;
+  }
+
+  &:hover {
+    opacity: .8;
+  }
+}
