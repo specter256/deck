@@ -28,4 +28,10 @@ export class NavComponent implements OnInit {
     this.isNavCollapsed = !this.isNavCollapsed;
     localStorage.setItem('isNavCollapsed', JSON.stringify(this.isNavCollapsed));
   }
+
+  closeMobileNav(): void {
+    if (this.store.isPhoneScreen || this.store.isTabletScreen) {
+      this.store.isNavOpened = false;
+    }
+  }
 }

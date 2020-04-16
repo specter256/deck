@@ -22,7 +22,7 @@ export class NoteCardComponent implements OnInit {
   }
 
   delNote(event: MouseEvent): void {
-    if (this.isDelConfirm)
+    if (this.isDelConfirm && confirm('Are you sure?'))
       this.store.delNote(this.data.id);
 
     this.isDelConfirm = !this.isDelConfirm;

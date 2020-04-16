@@ -69,12 +69,10 @@ export class StoreService {
     });
   }
 
-  delNote(id: string): void {
+  delNote(id: string): Promise<void> {
     if (!id) return;
     this.isLoading = true;
-    this.notesCollection.doc(id).delete().then(() => {
-      this.isLoading = false;
-    });
+    return this.notesCollection.doc(id).delete();
   }
 
   parseTags(): void {

@@ -9,7 +9,8 @@
   <section class="section-editor" *ngIf="isEditorVisible()">
     <app-toolbar
       [id]="id"
-      [(title)]="title"
+      [title]="title"
+      (titleChange)="onChangeTitle($event)"
       [isModal]="isModal"
       (new)="new()"
       (save)="save()"
@@ -22,7 +23,8 @@
       <div class="editor" [hidden]="isPreview">
         <textarea
           #editor
-          [(ngModel)]="content"
+          [ngModel]="content"
+          (ngModelChange)="onChangeContent($event)"
           (keydown)="onKeyDown($event)"
         ></textarea>
       </div>

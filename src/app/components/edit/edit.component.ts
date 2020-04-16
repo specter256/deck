@@ -1,7 +1,8 @@
 import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs/operators';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
 import { Note } from 'src/app/models/note';
 import { AuthService } from './../../services/auth.service';
 import { StoreService } from './../../services/store.service';
@@ -17,11 +18,15 @@ export class EditComponent implements OnInit {
   title = '';
   content = '';
   tags = [];
+  titleChanged: Subject<string> = new Subject<string>();
+  contentChanged: Subject<string> = new Subject<string>();
 
   // Variables
   isPreview = true;
-  isList = true;
   isModal = false;
+  tagsSubscription: Subscription;
+  titleSubscription: Subscription;
+  contentSubscription: Subscription;
 
   @ViewChild('editor') editor: ElementRef<HTMLTextAreaElement>;
 
@@ -56,13 +61,15 @@ export class EditComponent implements OnInit {
 
       if (this.activatedRoute.snapshot.url[0].path === 'new') {
         if (!params.id) {
-          this.isList = false;
           this.isModal = true;
         }
 
         this.isPreview = false;
         this.cd.detectChanges();
-        this.editor.nativeElement.focus();
+
+        if (this.editor) {
+          this.editor.nativeElement.focus();
+        }
       } else {
         // Select first note from the list
         if (!params.id && this.store.notes.length && !this.store.isPhoneScreen) {
@@ -89,10 +96,11 @@ export class EditComponent implements OnInit {
       this.id = id;
       this.title = data.title;
       this.content = data.content;
-    });
 
-    note.valueChanges().subscribe(() => {
-      this.tags = this.store.getNoteTags(id);
+      this.tagsSubscription = note.valueChanges().subscribe(() => {
+        this.tags = this.store.getNoteTags(this.id);
+      });
+      this.subscribeToAutoSave();
     });
   }
 
@@ -135,15 +143,18 @@ export class EditComponent implements OnInit {
     }
   }
 
-  async del(): Promise<void> {
+  del(): void {
     this.title = '';
     this.content = '';
 
     if (this.id) {
-      this.store.delNote(this.id);
+      this.store.delNote(this.id).then(() => {
+        this.router.navigate(['/edit']);
+      });
+    } else {
+      this.router.navigate(['/edit']);
     }
 
-    this.router.navigate(['/edit']);
     return;
   }
 
@@ -151,6 +162,16 @@ export class EditComponent implements OnInit {
     if (event.key === 'Tab') {
       event.preventDefault();
     }
+  }
+
+  onChangeTitle(value: string): void {
+    this.title = value;
+    this.titleChanged.next(value);
+  }
+
+  onChangeContent(value: string): void {
+    this.content = value;
+    this.contentChanged.next(value);
   }
 
   onSelectNote(id: string): void {
@@ -166,12 +187,37 @@ export class EditComponent implements OnInit {
   }
 
   isListVisible(): boolean {
-    return (this.isList && !this.store.isPhoneScreen)
+    return !this.store.isPhoneScreen
         || (this.store.isPhoneScreen && !this.id && !this.isModal);
   }
 
   isEditorVisible(): boolean {
     return (this.store.isPhoneScreen && !!this.id || this.isModal)
         || !this.store.isPhoneScreen;
+  }
+
+  subscribeToAutoSave(): void {
+    if (!this.id) return;
+
+    this.titleSubscription = this.titleChanged.pipe(
+      debounceTime(500),
+      distinctUntilChanged()
+    ).subscribe(value => {
+      this.save();
+    });
+
+    this.contentSubscription = this.contentChanged.pipe(
+      debounceTime(500),
+      distinctUntilChanged()
+    ).subscribe(value => {
+      this.save();
+    });
+  }
+
+  unsubscribe(): void {
+    if (!this.id) return;
+    this.tagsSubscription.unsubscribe();
+    this.titleSubscription.unsubscribe();
+    this.contentSubscription.unsubscribe();
   }
 }

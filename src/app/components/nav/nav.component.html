@@ -12,28 +12,31 @@
         New
       </div>
 
+      <mat-divider></mat-divider>
+
       <mat-nav-list style="flex: 1;">
+        <a
+          mat-list-item
+          routerLink="/edit"
+          [routerLinkActive]="'is-active'"
+          (click)="closeMobileNav()"
+        >
+          <mat-icon>notes</mat-icon>
+          List
+        </a>
+
         <a
           mat-list-item
           routerLink="/"
           [routerLinkActive]="'is-active'"
           [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMobileNav()"
         >
           <mat-icon>view_module</mat-icon>
           Grid
         </a>
 
-        <a mat-list-item routerLink="/edit" [routerLinkActive]="'is-active'">
-          <mat-icon>notes</mat-icon>
-          List
-        </a>
-
         <mat-divider></mat-divider>
-
-        <mat-list-item>
-          <mat-icon>local_offer</mat-icon>
-          Tags
-        </mat-list-item>
 
         <a
           mat-list-item
@@ -42,8 +45,9 @@
           [routerLinkActive]="'is-active'"
           [matTooltip]="tag"
           [matTooltipShowDelay]="500"
+          (click)="closeMobileNav()"
         >
-          <mat-icon>label</mat-icon>
+          <mat-icon>local_offer</mat-icon>
           <div class="tag-name">{{ tag }}</div>
         </a>
       </mat-nav-list>
