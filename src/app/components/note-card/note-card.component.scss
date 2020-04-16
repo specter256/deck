@@ -1,6 +1,6 @@
 @import 'src/styles.scss';
 
-$header-height: 30px;
+$header-height: 40px;
 $footer-height: 35px;
 $block-padding: 10px;
 $opacity-transition: opacity .3s ease-in-out;
@@ -19,7 +19,6 @@ mat-icon {
 }
 
 .card {
-  width: 260px;
   height: 300px;
   color: rgba(0, 0, 0, 0.87);
   background-color: $card-background-color;
@@ -47,7 +46,6 @@ mat-icon {
   padding: $block-padding;
   overflow: hidden;
   text-overflow: ellipsis;
-  // white-space: nowrap;
   font-weight: 500;
   font-size: 16px;
   word-break: break-all;
@@ -58,11 +56,6 @@ mat-icon {
   overflow-x: hidden;
   overflow-y: auto;
   margin: 0 10px;
-  // padding: $block-padding;
-}
-
-markdown {
-  display: grid;
 }
 
 .footer {
@@ -83,7 +76,6 @@ markdown {
 
 @media (max-width: 959px) {
   .card {
-    width: 100%;
     margin: 5px;
   }
 }

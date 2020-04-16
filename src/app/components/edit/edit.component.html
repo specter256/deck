@@ -19,7 +19,7 @@
     ></app-toolbar>
 
     <div class="wrapper">
-      <div class="editor" *ngIf="!isPreview">
+      <div class="editor" [hidden]="isPreview">
         <textarea
           #editor
           [(ngModel)]="content"
@@ -27,7 +27,7 @@
         ></textarea>
       </div>
 
-      <div class="markdown" *ngIf="isPreview">
+      <div class="markdown" [hidden]="!isPreview">
         <markdown ngPreserveWhitespaces [data]="content">
         </markdown>
       </div>

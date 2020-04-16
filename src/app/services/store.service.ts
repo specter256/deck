@@ -28,6 +28,9 @@ export class StoreService {
     private breakpointObserver: BreakpointObserver,
     private auth: AuthService,
   ) {
+    if (this.isPhoneScreen || this.isTabletScreen) {
+      this.isNavOpened = false;
+    }
   }
 
   getNotes(): void {

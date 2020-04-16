@@ -64,7 +64,8 @@ export class EditComponent implements OnInit {
         this.cd.detectChanges();
         this.editor.nativeElement.focus();
       } else {
-        if (!params.id && this.store.notes.length) {
+        // Select first note from the list
+        if (!params.id && this.store.notes.length && !this.store.isPhoneScreen) {
           this.router.navigate(['/edit/' + this.store.notes[0].id]);
           return;
         }

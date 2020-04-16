@@ -21,7 +21,7 @@ export class NoteCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  delNote(): void {
+  delNote(event: MouseEvent): void {
     if (this.isDelConfirm)
       this.store.delNote(this.data.id);
 
@@ -32,5 +32,9 @@ export class NoteCardComponent implements OnInit {
         this.isDelConfirm = false;
       }, 1500);
     }
+  }
+
+  onDblClick(event: MouseEvent): void {
+    event.stopPropagation();
   }
 }

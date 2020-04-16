@@ -37,12 +37,14 @@
 
         <a
           mat-list-item
+          *ngFor="let tag of store.tags"
           [routerLink]="'/tag/' + tag"
           [routerLinkActive]="'is-active'"
-          *ngFor="let tag of store.tags"
+          [matTooltip]="tag"
+          [matTooltipShowDelay]="500"
         >
           <mat-icon>label</mat-icon>
-          <div class="tag-name" [matTooltip]="tag" [matTooltipShowDelay]="500">{{ tag }}</div>
+          <div class="tag-name">{{ tag }}</div>
         </a>
       </mat-nav-list>
 

@@ -25,13 +25,12 @@
 }
 
 .wrapper {
-  display: flex;
-  flex-wrap: wrap;
   padding: 20px;
-  // background-color: $grid-background-color;
   background: linear-gradient(#e6646526, #9198e51f);
   flex: 1;
-  justify-content: center;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .ng-sg-placeholder {
@@ -46,10 +45,6 @@
 @media (max-width: 959px) {
   .wrapper {
     padding: 0;
-  }
-
-  .drag-card {
-    display: flex;
-    flex-basis: 50%;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }

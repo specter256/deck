@@ -92,6 +92,6 @@ mat-divider {
   }
 
   &:hover {
-    opacity: .8;
+    background-color: mat-color($deck-accent, 500);
   }
 }

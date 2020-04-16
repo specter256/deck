@@ -3,6 +3,8 @@
     <span [matTooltip]="data.title" [matTooltipShowDelay]="500">{{ data.title }}</span>
   </div>
 
+  <mat-divider></mat-divider>
+
   <div class="content">
     <div>
       <markdown ngPreserveWhitespaces [data]="data.content">
@@ -10,10 +12,17 @@
     </div>
   </div>
 
+  <mat-divider></mat-divider>
+
   <div class="footer">
     <span class="datetime">{{ utils.getDate(data.updated_at) }}</span>
     <div fxFlex></div>
-    <button mat-icon-button class="action-btn" (click)="delNote()">
+    <button
+      mat-icon-button
+      class="action-btn"
+      (click)="delNote($event)"
+      (dblclick)="onDblClick($event)"
+    >
       <mat-icon color="primary">{{ isDelConfirm ? 'check' : 'delete' }}</mat-icon>
     </button>
   </div>
