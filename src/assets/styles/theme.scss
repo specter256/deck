@@ -56,3 +56,71 @@ $border-color: mat-color($deck-primary, 100);
 $card-background-color: #fff;
 $input-background-color: #fff;
 $datetime-font-color: gray;
+
+
+/* STYLES */
+
+.toolbar {
+  position: sticky;
+  top: 0;
+  height: $toolbar-height;
+}
+
+.btn {
+  background-color: $button-background-color;
+  height: 32px;
+  width: 38px;
+  border: 1px solid $border-color;
+  outline: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-left: -1px;
+  border-radius: 6px;
+
+  &:hover {
+    background-color: mat-color($deck-accent, 200);
+  }
+
+  &:active {
+    background-color: mat-color($deck-accent, 400);
+  }
+}
+
+.buttons {
+  display: inline-flex;
+
+  .btn {
+    border-radius: 0;
+  }
+
+  .btn:first-child {
+    border-radius: 6px 0 0 6px;
+  }
+
+  .btn:last-child {
+    border-radius: 0 6px 6px 0;
+  }
+}
+
+.mat-toolbar {
+  padding: 0 10px;
+}
+
+.btn-compose-fab {
+  display: none;
+}
+
+.dialog-container .mat-dialog-container {
+  padding: 12px;
+}
+
+@media (max-width: 959px) {
+  .btn-compose-fab {
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+  }
+}
