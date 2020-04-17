@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, take } from 'rxjs/operators';
@@ -18,8 +19,8 @@ export class EditComponent implements OnInit {
   title = '';
   content = '';
   tags = [];
-  titleChanged: Subject<string> = new Subject<string>();
-  contentChanged: Subject<string> = new Subject<string>();
+  titleChanged = new Subject<string>();
+  contentChanged = new Subject<string>();
 
   // Variables
   isPreview = true;
@@ -97,24 +98,13 @@ export class EditComponent implements OnInit {
       this.title = data.title;
       this.content = data.content;
 
-      this.tagsSubscription = note.valueChanges().subscribe(() => {
-        this.tags = this.store.getNoteTags(this.id);
-      });
+      this.subscribeToTags(note);
       this.subscribeToAutoSave();
     });
   }
 
-  async new(): Promise<void> {
-    const doc = await this.store.addNote({
-      title: '',
-      content: '',
-      created_at: new Date(),
-      updated_at: new Date(),
-      user_id: this.auth.userData.uid
-    });
-
-    this.store.isLoading = false;
-    this.router.navigate(['/new', doc.id]);
+  new(): void {
+    this.router.navigate(['/new']);
   }
 
   async save(): Promise<void> {
@@ -194,6 +184,18 @@ export class EditComponent implements OnInit {
   isEditorVisible(): boolean {
     return (this.store.isPhoneScreen && !!this.id || this.isModal)
         || !this.store.isPhoneScreen;
+  }
+
+  subscribeToTags(note: AngularFirestoreDocument): void {
+    this.tagsSubscription = note.valueChanges().subscribe((values) => {
+      // Unsubscribe if document was deleted
+      if (values === undefined) {
+        this.unsubscribe();
+        return;
+      }
+
+      this.tags = this.store.getNoteTags(this.id);
+    });
   }
 
   subscribeToAutoSave(): void {
