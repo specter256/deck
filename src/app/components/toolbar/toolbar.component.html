@@ -45,7 +45,7 @@
       <button
         *ngIf="store.isPhoneScreen || store.isTabletScreen"
         mat-icon-button
-        style="margin-right: 15px;"
+        style="margin-right: 12px;"
         (click)="store.toggleNav()"
       >
         <mat-icon>menu</mat-icon>
@@ -53,7 +53,7 @@
 
       <div class="buttons">
         <button class="btn" (click)="onNew()" *ngIf="!this.isModal">
-          <mat-icon>add</mat-icon>
+          <mat-icon>edit</mat-icon>
         </button>
 
         <button class="btn" (click)="onSave()">
@@ -61,7 +61,7 @@
         </button>
 
         <button class="btn" (click)="onTogglePreview()">
-          <mat-icon>edit</mat-icon>
+          <mat-icon>chrome_reader_mode</mat-icon>
         </button>
 
         <button class="btn" (click)="selectTag()">

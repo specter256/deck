@@ -7,7 +7,7 @@
     [class.collapsed-side]="isNavCollapsed"
   >
     <div class="sidenav-container">
-      <div class="btn-compose" routerLink="/new">
+      <div class="btn-compose" routerLink="/new" (click)="closeMobileNav()">
         <mat-icon>create</mat-icon>
         New
       </div>

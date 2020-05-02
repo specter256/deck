@@ -50,7 +50,8 @@ $sidebar-background-color: mat-color($deck-primary, 500);
 $sidebar-font-color: #d5e4e6;
 $editor-background-color: #fff;
 $grid-background-color: mat-color($deck-primary, 50);
-$toolbar-height: 48px;
+$toolbar-height: 58px;
+$input-height: 42px;
 $button-background-color: #fff;
 $border-color: mat-color($deck-primary, 100);
 $card-background-color: #fff;
@@ -74,8 +75,8 @@ $dark-input-color: #363636;
 
 .btn {
   background-color: $button-background-color;
-  height: 32px;
-  width: 38px;
+  height: 42px;
+  width: 48px;
   border: 1px solid $border-color;
   outline: none;
   display: inline-flex;
@@ -159,6 +160,10 @@ $dark-input-color: #363636;
 
   .toolbar {
     background-color: #202020 !important;
+
+    mat-icon {
+      color: white;
+    }
   }
 
   .search, .title {
