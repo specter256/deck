@@ -21,6 +21,7 @@ import { environment } from '../environments/environment';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { TagsDialogComponent } from './components/tags-dialog/tags-dialog.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { TagsDialogComponent } from './components/tags-dialog/tags-dialog.compon
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [],
   bootstrap: [AppComponent]
