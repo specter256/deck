@@ -59,6 +59,15 @@ mat-icon {
   margin: 0 10px;
 }
 
+.content::-webkit-scrollbar {
+  width: 12px;
+  cursor: pointer;
+}
+
+.content::-webkit-scrollbar-thumb {
+  background-color: mat-color($deck-primary, 300);
+}
+
 .footer {
   display: flex;
   width: 100%;

@@ -57,6 +57,12 @@ $card-background-color: #fff;
 $input-background-color: #fff;
 $datetime-font-color: gray;
 
+$dark-background-color: #161616;
+$dark-sidebar-color: #0F0F0F;
+$dark-font-color: white;
+$dark-border-color: #2b2b2b;
+$dark-input-color: #363636;
+
 
 /* STYLES */
 
@@ -80,11 +86,13 @@ $datetime-font-color: gray;
   border-radius: 6px;
 
   &:hover {
-    background-color: mat-color($deck-accent, 200);
+    background-color: mat-color($deck-accent, 200) !important;
+    color: black;
   }
 
   &:active {
-    background-color: mat-color($deck-accent, 400);
+    background-color: mat-color($deck-accent, 400) !important;
+    color: black;
   }
 }
 
@@ -114,6 +122,65 @@ $datetime-font-color: gray;
 
 .dialog-container .mat-dialog-container {
   padding: 12px;
+}
+
+.dark-theme {
+  .grid-wrapper, .list-wrapper {
+    background: $dark-background-color !important;
+  }
+
+  .markdown, textarea {
+    background: $dark-background-color !important;
+    color: $dark-font-color;
+  }
+
+  .list-wrapper {
+    color: $dark-font-color;
+    border-right: 1px solid $dark-border-color !important;
+
+    .selected, .list-item:hover {
+      color: black;
+    }
+  }
+
+  .tags {
+    background: $dark-background-color !important;
+    border-top: 1px solid $dark-border-color !important;
+  }
+
+  .sidebar {
+    background-color: $dark-sidebar-color !important;
+  }
+
+  .card {
+    background-color: #202020 !important;
+    color: $dark-font-color !important;
+  }
+
+  .toolbar {
+    background-color: #202020 !important;
+  }
+
+  .search, .title {
+    background-color: $dark-input-color !important;
+    border-color: $dark-border-color !important;
+    color: $dark-font-color;
+
+    input {
+      background-color: $dark-input-color !important;
+      color: $dark-font-color;
+    }
+  }
+
+  .mat-nav-list .mat-list-item:hover {
+    background: rgba(156, 156, 156, 0.1) !important;
+  }
+
+  .btn {
+    background-color: $dark-input-color !important;
+    border-color: $dark-border-color !important;
+    color: $dark-font-color;
+  }
 }
 
 @media (max-width: 959px) {

@@ -16,6 +16,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const modules = [
   FormsModule,
@@ -34,6 +35,7 @@ const modules = [
   MatCardModule,
   MatDialogModule,
   MatCheckboxModule,
+  MatSlideToggleModule,
   ReactiveFormsModule
 ];
 

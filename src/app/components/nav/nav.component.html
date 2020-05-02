@@ -1,4 +1,4 @@
-<mat-sidenav-container class="wrapper" autosize>
+<mat-sidenav-container class="wrapper" [class.dark-theme]="store.isDarkTheme" autosize>
   <mat-sidenav
     class="sidebar"
     [mode]="store.isPhoneScreen || store.isTabletScreen ? 'over' : 'side'"
@@ -66,6 +66,12 @@
       <mat-divider></mat-divider>
 
       <mat-nav-list>
+        <div mat-list-item class="theme-slider">
+          <mat-slide-toggle [color]="'accent'" (change)="onChangeTheme($event)" [checked]="store.isDarkTheme">
+            Dark theme
+          </mat-slide-toggle>
+        </div>
+
         <a mat-list-item (click)="logout()">
           <mat-icon>exit_to_app</mat-icon>
           Log out

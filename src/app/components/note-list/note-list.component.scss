@@ -1,6 +1,6 @@
 @import 'src/assets/styles/theme.scss';
 
-.wrapper {
+.list-wrapper {
   background-color: $editor-background-color;
   border-right: 1px solid $border-color;
   height: calc(100% - #{$toolbar-height});

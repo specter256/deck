@@ -18,6 +18,11 @@ export class NavComponent implements OnInit {
   ngOnInit(): void {
     this.store.getNotes();
     this.isNavCollapsed = JSON.parse(localStorage.getItem('isNavCollapsed'));
+    const isDarkTheme = localStorage.getItem('isDarkTheme');
+
+    if (isDarkTheme) {
+      this.store.isDarkTheme = JSON.parse(isDarkTheme);
+    }
   }
 
   logout(): void {
@@ -33,5 +38,10 @@ export class NavComponent implements OnInit {
     if (this.store.isPhoneScreen || this.store.isTabletScreen) {
       this.store.isNavOpened = false;
     }
+  }
+
+  onChangeTheme(event: any): void {
+    this.store.isDarkTheme = event.checked;
+    localStorage.setItem('isDarkTheme', JSON.stringify(this.store.isDarkTheme));
   }
 }

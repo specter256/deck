@@ -2,7 +2,7 @@
   <app-search (search)="onSearch($event)"></app-search>
 </mat-toolbar>
 
-<div class="wrapper">
+<div class="grid-wrapper">
   <app-note-card
     *ngFor="let note of filteredNotes"
     ngSortgridItem

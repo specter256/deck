@@ -22,6 +22,7 @@ export class StoreService {
   isPhoneScreen = this.breakpointObserver.isMatched('(max-width: 599px)');
   isTabletScreen = this.breakpointObserver.isMatched('(min-width: 600px) and (max-width: 959px)');
   isNavOpened = true;
+  isDarkTheme = false;
 
   constructor(
     private fs: AngularFirestore,
@@ -97,6 +98,8 @@ export class StoreService {
         }
       }
     }
+
+    this.tags.sort();
   }
 
   getNoteTags(noteId: string): string[] {
