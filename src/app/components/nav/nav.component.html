@@ -36,6 +36,17 @@
           Grid
         </a>
 
+        <a
+          mat-list-item
+          routerLink="/trash"
+          [routerLinkActive]="'is-active'"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMobileNav()"
+        >
+          <mat-icon>delete</mat-icon>
+          Trash
+        </a>
+
         <mat-divider></mat-divider>
 
         <a

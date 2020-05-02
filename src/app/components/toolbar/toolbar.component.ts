@@ -25,6 +25,7 @@ export class ToolbarComponent implements OnInit {
   @Output() closeNew = new EventEmitter();
   @Output() titleChange = new EventEmitter();
   @ViewChild('tagBtn') tagBtn: ElementRef<HTMLElement>;
+  @ViewChild('titleInput') titleRef: ElementRef<HTMLElement>;
 
   isDelConfirm = false;
 
@@ -77,5 +78,9 @@ export class ToolbarComponent implements OnInit {
 
   onChangeTitle(title: string) {
     this.titleChange.emit(title);
+  }
+
+  focusOnTitle(): void {
+    this.titleRef.nativeElement.focus();
   }
 }

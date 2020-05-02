@@ -11,6 +11,7 @@ export class NoteGridComponent implements OnInit {
   filteredNotes = [];
   filterValue = '';
   filterTag: string;
+  isTrash = false;
 
   constructor(
     public store: StoreService,
@@ -20,6 +21,13 @@ export class NoteGridComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
+      if (
+        this.activatedRoute.snapshot.url.length
+        && this.activatedRoute.snapshot.url[0].path === 'trash'
+      ) {
+        this.isTrash = true;
+      }
+
       if (params.tag) {
         this.filterTag = params.tag;
         this.search();
@@ -41,12 +49,20 @@ export class NoteGridComponent implements OnInit {
   }
 
   search(): void {
+    const notes = this.store.notes.filter(i => {
+      if (this.isTrash) {
+        return i.deleted === true;
+      }
+
+      return i.deleted !== true;
+    });
+
     if (this.filterValue.trim() === '' && !this.filterTag) {
-      this.filteredNotes = this.store.notes;
+      this.filteredNotes = notes;
       return;
     }
 
-    this.filteredNotes = this.store.notes.filter(note => {
+    this.filteredNotes = notes.filter(note => {
       return (note.title.toLowerCase().includes(this.filterValue)
           || note.content.toLowerCase().includes(this.filterValue))
           && (!this.filterTag || (note.tags && note.tags.includes(this.filterTag)));

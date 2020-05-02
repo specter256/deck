@@ -18,12 +18,33 @@
     <span class="datetime">{{ utils.getDate(data.updated_at) }}</span>
     <div fxFlex></div>
     <button
+      *ngIf="!data.deleted"
       mat-icon-button
       class="action-btn"
-      (click)="delNote($event)"
+      (click)="moveToTrash($event)"
       (dblclick)="onDblClick($event)"
     >
       <mat-icon color="primary">{{ isDelConfirm ? 'check' : 'delete' }}</mat-icon>
+    </button>
+
+    <button
+      *ngIf="data.deleted"
+      mat-icon-button
+      class="action-btn"
+      (click)="delForever($event)"
+      (dblclick)="onDblClick($event)"
+    >
+      <mat-icon color="primary">delete_forever</mat-icon>
+    </button>
+
+    <button
+      *ngIf="data.deleted"
+      mat-icon-button
+      class="action-btn"
+      (click)="undoDelete($event)"
+      (dblclick)="onDblClick($event)"
+    >
+      <mat-icon color="primary">undo</mat-icon>
     </button>
   </div>
 </div>

@@ -34,12 +34,14 @@ export class NoteListComponent implements OnInit {
   }
 
   search(): void {
+    const notes = this.store.notes.filter(i => i.deleted !== true );
+
     if (this.filterValue.trim() === '') {
-      this.filteredNotes = this.store.notes;
+      this.filteredNotes = notes;
       return;
     }
 
-    this.filteredNotes = this.store.notes.filter(note => {
+    this.filteredNotes = notes.filter(note => {
       return note.title.toLowerCase().includes(this.filterValue)
           || note.content.toLowerCase().includes(this.filterValue);
     });

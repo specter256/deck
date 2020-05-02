@@ -7,6 +7,7 @@
     *ngFor="let note of filteredNotes"
     ngSortgridItem
     [ngSortGridItems]="filteredNotes"
+    (sorted)="store.saveNewOrder($event)"
   >
     <div
       class="list-item"

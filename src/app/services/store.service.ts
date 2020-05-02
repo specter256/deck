@@ -39,7 +39,7 @@ export class StoreService {
 
     this.notesCollection = this.fs.collection('notes', ref => {
       return ref.where('user_id', '==', this.auth.userData.uid || null)
-                .orderBy('updated_at', 'desc');
+                .orderBy('order', 'asc');
     });
 
     this.notes$ = this.notesCollection.valueChanges({
@@ -59,12 +59,22 @@ export class StoreService {
 
   addNote(data: Note): Promise<DocumentReference> {
     this.isLoading = true;
+    data.order = this.notes.length + 1;
     return this.notesCollection.add(data);
   }
 
   updNote(data: Note): void {
     this.isLoading = true;
     this.notesCollection.doc(data.id).update(data).then(() => {
+      this.isLoading = false;
+    });
+  }
+
+  moveNoteToTrash(id: string): void {
+    this.isLoading = true;
+    this.notesCollection.doc(id).update({
+      deleted: true,
+    }).then(() => {
       this.isLoading = false;
     });
   }
@@ -92,6 +102,22 @@ export class StoreService {
   getNoteTags(noteId: string): string[] {
     const note = this.notes.find(i => i.id === noteId);
     return note.tags || [];
+  }
+
+  saveNewOrder(data: any): void {
+    const prev = data.previousOrder;
+    const curr = data.currentOrder;
+
+    for (let i = 0; i < curr.length; i++) {
+      const prevIndex = prev.findIndex(x => x.id === curr[i].id);
+
+      if (i !== prevIndex) {
+        this.updNote({
+          id: curr[i].id,
+          order: i,
+        });
+      }
+    }
   }
 
   toggleNav(): void {

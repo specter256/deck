@@ -31,10 +31,10 @@
   </div>
 
   <div class="title">
-    <input [ngModel]="title" (ngModelChange)="onChangeTitle($event)" placeholder="Note...">
+    <input #titleInput [ngModel]="title" (ngModelChange)="onChangeTitle($event)" placeholder="Note...">
   </div>
 
-  <button class="btn" (click)="onDel()" style="margin-left: 20px;">
+  <button class="btn" (click)="onDel()" style="margin-left: 20px;" tabindex="-1">
     <mat-icon>{{ isDelConfirm ? 'check' : 'delete' }}</mat-icon>
   </button>
 </mat-toolbar>
@@ -79,7 +79,7 @@
   
   <mat-toolbar-row>
     <div class="title">
-      <input [ngModel]="title" (ngModelChange)="onChangeTitle($event)" placeholder="Note...">
+      <input #titleInput [ngModel]="title" (ngModelChange)="onChangeTitle($event)" placeholder="Note...">
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

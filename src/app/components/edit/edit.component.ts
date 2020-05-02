@@ -1,3 +1,4 @@
+import { ToolbarComponent } from './../toolbar/toolbar.component';
 import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -29,7 +30,13 @@ export class EditComponent implements OnInit {
   titleSubscription: Subscription;
   contentSubscription: Subscription;
 
-  @ViewChild('editor') editor: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('editor') editorRef: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('toolbar') set toolbarRef(toolbar: ToolbarComponent) {
+    if (!toolbar) return;
+    if (this.activatedRoute.snapshot.url[0].path === 'new') {
+      toolbar.focusOnTitle();
+    }
+  }
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -60,17 +67,16 @@ export class EditComponent implements OnInit {
         this.getData(params.id);
       }
 
-      if (this.activatedRoute.snapshot.url[0].path === 'new') {
+      if (
+        this.activatedRoute.snapshot.url.length
+        && this.activatedRoute.snapshot.url[0].path === 'new'
+      ) {
         if (!params.id) {
           this.isModal = true;
         }
 
         this.isPreview = false;
         this.cd.detectChanges();
-
-        if (this.editor) {
-          this.editor.nativeElement.focus();
-        }
       } else {
         // Select first note from the list
         if (!params.id && this.store.notes.length && !this.store.isPhoneScreen) {
@@ -138,13 +144,10 @@ export class EditComponent implements OnInit {
     this.content = '';
 
     if (this.id) {
-      this.store.delNote(this.id).then(() => {
-        this.router.navigate(['/edit']);
-      });
-    } else {
-      this.router.navigate(['/edit']);
+      this.store.moveNoteToTrash(this.id);
     }
 
+    this.router.navigate(['/edit']);
     return;
   }
 

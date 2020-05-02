@@ -13,6 +13,7 @@ const routes: Routes = [
     children: [
       { path: '', component: NoteGridComponent },
       { path: 'tag/:tag', component: NoteGridComponent },
+      { path: 'trash', component: NoteGridComponent },
       { path: 'new', component: EditComponent },
       { path: 'new/:id', component: EditComponent },
       { path: 'edit', component: EditComponent },

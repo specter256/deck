@@ -6,4 +6,6 @@ export interface Note {
   updated_at?: any;
   user_id?: string;
   tags?: string[];
+  order?: number;
+  deleted?: boolean;
 }

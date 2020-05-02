@@ -7,6 +7,7 @@
     *ngFor="let note of filteredNotes"
     ngSortgridItem
     [ngSortGridItems]="filteredNotes"
+    (sorted)="store.saveNewOrder($event)"
     [data]="note"
     class="drag-card"
     (dblclick)="select(note.id)"
@@ -14,6 +15,7 @@
 </div>
 
 <button
+  *ngIf="!isTrash"
   class="btn-compose-fab"
   mat-fab
   color="accent"

@@ -8,6 +8,7 @@
 
   <section class="section-editor" *ngIf="isEditorVisible()">
     <app-toolbar
+      #toolbar
       [id]="id"
       [title]="title"
       (titleChange)="onChangeTitle($event)"
