@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime } from 'rxjs/operators';
 import { StoreService } from '../../services/store.service';
 
 @Component({
@@ -34,7 +35,7 @@ export class NoteGridComponent implements OnInit {
       }
     });
 
-    this.store.notes$.subscribe(data => {
+    this.store.notes$.pipe(debounceTime(50)).subscribe(data => {
       this.search();
     });
   }

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { debounceTime } from 'rxjs/operators';
 import { Note } from 'src/app/models/note';
 import { StoreService } from './../../services/store.service';
 
@@ -19,7 +20,7 @@ export class NoteListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.store.notes$.subscribe(data => {
+    this.store.notes$.pipe(debounceTime(50)).subscribe(data => {
       this.onSearch(this.filterValue);
     });
   }
