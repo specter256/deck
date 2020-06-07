@@ -67,6 +67,13 @@ $dark-input-color: #363636;
 
 /* STYLES */
 
+markdown h1,
+markdown h2,
+markdown h3 {
+  border-left: 2px solid mat-color($deck-accent, 200);
+  padding-left: 15px;
+}
+
 .toolbar {
   position: sticky;
   top: 0;
